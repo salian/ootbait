@@ -148,6 +148,24 @@ const unsigned long displayOffDelay = 10000;  // Put the display screen to sleep
 bool displayIsOn = false;
 
 
+// Motor Driver Setup -------------------------------------
+
+// * CONNECTIONS:
+// *
+// * Arduino D3  - Motor Driver PWM Input
+// * Arduino D4  - Motor Driver DIR Input
+// * Arduino GND - Motor Driver GND
+
+#define DIRECTION_UP 1
+#define DIRECTION_DOWN 2
+
+// Cytron
+#include "CytronMotorDriver.h"
+
+// Configure the motor driver.
+CytronMD motor(PWM_DIR, 3, 4);  // PWM = Pin 3, DIR = Pin 4.
+
+
 // Arduino Initial Setup ---------------------------------------
 
 void setup() {
@@ -227,6 +245,7 @@ void goDown() {
   drawMovingArrow(F("DOWN"));
   playTwoTone(TONE_MOVING);
   drawStaticArrow(DIRECTION_DOWN);
+  driveMotor(DIRECTION_DOWN, 1000);
   drawMovingArrow(F("DOWN"));
   delay(25);
 }
@@ -236,6 +255,7 @@ void goUp() {
   drawMovingArrow(F("UP"));
   playTwoTone(TONE_MOVING);
   drawStaticArrow(DIRECTION_UP);
+  driveMotor(DIRECTION_UP, 1000);
   drawMovingArrow(F("UP"));
   delay(25);
 }
@@ -351,8 +371,6 @@ void showScreen() {
   displaySleepTimer = millis();
   displayIsOn = true;
 }
-
-
 
 
 void selectMenu() {
@@ -634,4 +652,38 @@ void drawMovingArrow(String direction) {
   }
   display.clearDisplay();  // Clear the buffer
   display.display();  // Show the empty buffer (clear the screen)
+}
+
+//  Motor Driving Functions  ------------------
+
+void driveMotor(int motorDirection, int motorDuration) {
+  //  Speeds:
+  //  100% : 255
+  //  75%  : 191
+  //  50%  : 128
+  //  25%  : 64
+  //  0%   : 0
+
+  // delay for previous motion (if any) to stop.
+  Serial.println(F("Motor about to move"));
+  delay(500);
+  motorDuration = 1000;
+  switch (motorDirection) {
+    case DIRECTION_UP:
+      Serial.println(F("Motor moving in direction UP"));
+      motor.setSpeed(255);  // Run forward at 100% speed.
+      delay(motorDuration);
+      break;
+    case DIRECTION_DOWN:
+      Serial.println(F("Motor moving in direction DOWN"));
+      motor.setSpeed(-128);  // Run backward at 50% speed.
+      delay(motorDuration);
+      break;
+    default:
+      break;
+  }
+
+  motor.setSpeed(0);    // Stop.
+  delay(500);  // Let it come to a stop
+  Serial.println(F("Motor stopped"));
 }
