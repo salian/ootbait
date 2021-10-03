@@ -88,6 +88,7 @@ The cases can be downloaded and printed:
 | Case for Ultrasonic Sensor | TODO |  |
 | Case for Laser Sensor | TODO | Optional, if you use the sensor and your sensor does not have the case |
 
+
 #### Pre-assembled Kits
 Currently no kits are available to buy.
 
