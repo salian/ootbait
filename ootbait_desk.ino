@@ -27,6 +27,109 @@
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
+// Buzzer Setup   -------------------------------------------------------
+
+const int BUZZER_PIN = 6; //buzzer connected to arduino pin
+
+#define TONE_SUCCESS 1
+#define TONE_ERROR 2
+#define TONE_WARNING 3
+#define TONE_INFO 4
+#define TONE_HAPTIC 5
+#define TONE_MOVING 6
+
+// Buzzer Notes  Todo: Move this to a header file
+
+#define NOTE_B0  31
+#define NOTE_C1  33
+#define NOTE_CS1 35
+#define NOTE_D1  37
+#define NOTE_DS1 39
+#define NOTE_E1  41
+#define NOTE_F1  44
+#define NOTE_FS1 46
+#define NOTE_G1  49
+#define NOTE_GS1 52
+#define NOTE_A1  55
+#define NOTE_AS1 58
+#define NOTE_B1  62
+#define NOTE_C2  65
+#define NOTE_CS2 69
+#define NOTE_D2  73
+#define NOTE_DS2 78
+#define NOTE_E2  82
+#define NOTE_F2  87
+#define NOTE_FS2 93
+#define NOTE_G2  98
+#define NOTE_GS2 104
+#define NOTE_A2  110
+#define NOTE_AS2 117
+#define NOTE_B2  123
+#define NOTE_C3  131
+#define NOTE_CS3 139
+#define NOTE_D3  147
+#define NOTE_DS3 156
+#define NOTE_E3  165
+#define NOTE_F3  175
+#define NOTE_FS3 185
+#define NOTE_G3  196
+#define NOTE_GS3 208
+#define NOTE_A3  220
+#define NOTE_AS3 233
+#define NOTE_B3  247
+#define NOTE_C4  262
+#define NOTE_CS4 277
+#define NOTE_D4  294
+#define NOTE_DS4 311
+#define NOTE_E4  330
+#define NOTE_F4  349
+#define NOTE_FS4 370
+#define NOTE_G4  392
+#define NOTE_GS4 415
+#define NOTE_A4  440
+#define NOTE_AS4 466
+#define NOTE_B4  494
+#define NOTE_C5  523
+#define NOTE_CS5 554
+#define NOTE_D5  587
+#define NOTE_DS5 622
+#define NOTE_E5  659
+#define NOTE_F5  698
+#define NOTE_FS5 740
+#define NOTE_G5  784
+#define NOTE_GS5 831
+#define NOTE_A5  880
+#define NOTE_AS5 932
+#define NOTE_B5  988
+#define NOTE_C6  1047
+#define NOTE_CS6 1109
+#define NOTE_D6  1175
+#define NOTE_DS6 1245
+#define NOTE_E6  1319
+#define NOTE_F6  1397
+#define NOTE_FS6 1480
+#define NOTE_G6  1568
+#define NOTE_GS6 1661
+#define NOTE_A6  1760
+#define NOTE_AS6 1865
+#define NOTE_B6  1976
+#define NOTE_C7  2093
+#define NOTE_CS7 2217
+#define NOTE_D7  2349
+#define NOTE_DS7 2489
+#define NOTE_E7  2637
+#define NOTE_F7  2794
+#define NOTE_FS7 2960
+#define NOTE_G7  3136
+#define NOTE_GS7 3322
+#define NOTE_A7  3520
+#define NOTE_AS7 3729
+#define NOTE_B7  3951
+#define NOTE_C8  4186
+#define NOTE_CS8 4435
+#define NOTE_D8  4699
+#define NOTE_DS8 4978
+
 // Joystick Setup  -------------------------------------------------------
 
 #include <Joystick.h>
@@ -61,6 +164,8 @@ void setup() {
   // the library initializes this with the splash screen.
   display.display();
   delay(3000); // Pause for 2 seconds
+
+  pinMode(BUZZER_PIN, OUTPUT); // Set buzzer pin as an output
 
   joystick = new AxisJoystick(SW_PIN, VRX_PIN, VRY_PIN);
 }
@@ -120,6 +225,7 @@ void loop() {
 void goDown() {
   Serial.println(F("Command: Move Down"));
   drawMovingArrow(F("DOWN"));
+  playTwoTone(TONE_MOVING);
   drawStaticArrow(DIRECTION_DOWN);
   drawMovingArrow(F("DOWN"));
   delay(25);
@@ -128,6 +234,7 @@ void goDown() {
 void goUp() {
   Serial.println(F("Command: Move Up"));
   drawMovingArrow(F("UP"));
+  playTwoTone(TONE_MOVING);
   drawStaticArrow(DIRECTION_UP);
   drawMovingArrow(F("UP"));
   delay(25);
@@ -268,18 +375,22 @@ void selectMenu() {
     case 1:
       // MOVE TO PRESET 1
       respondPress();
+      playTwoTone(TONE_SUCCESS);
       break;
     case 2:
       // MOVE TO PRESET 2
       respondPress();
+      playTwoTone(TONE_ERROR);
       break;
     case 3:
       // MOVE TO PRESET 3
       respondPress();
+      playTwoTone(TONE_WARNING);
       break;
     case 4:
       // MOVE TO PRESET 4
       respondPress();
+      playTwoTone(TONE_HAPTIC);
       break;
     case 5:
       // WIFI SETTINGS
@@ -292,6 +403,7 @@ void selectMenu() {
     default:
       // unknown selection
       respondPress();
+      playTwoTone(TONE_HAPTIC);
       Serial.println("Err: Unknown option selected.");
       break;
   }
@@ -320,6 +432,90 @@ void respondPress() {
     delay(1);
   }
   showScreen();  // Show current screen
+}
+
+void respondBuzz() {
+  // Use of the tone() function will interfere with PWM output on pins 3 and 11 (on boards other than the Mega).
+  tone(BUZZER_PIN, 500); // Send 1KHz sound signal...
+  delay(10);          // ...for x ms
+  noTone(BUZZER_PIN);     // Stop sound...
+}
+
+
+//  Buzzer Sounds  ---------------------------------------------
+
+
+void playTwoTone(const int toneType) {
+  // use square wave on https://onlinesequencer.net/ to practice
+  int melody[2];
+  int noteDurations[2];
+  switch (toneType) {
+    case TONE_SUCCESS:
+      Serial.println("Tone: TONE_SUCCESS");
+      //melody[0] = NOTE_F5;
+      //melody[1] = NOTE_E5;
+      //melody[0] = NOTE_E3;
+      //melody[1] = NOTE_B3;
+      melody[0] = NOTE_F5;
+      melody[1] = NOTE_B4;
+      noteDurations[0] = 8;
+      noteDurations[1] = 8;
+      break;
+    case TONE_ERROR:
+      Serial.println("Tone: TONE_ERROR");
+      //melody[0] = NOTE_DS5;
+      //melody[1] = NOTE_CS4;
+      //noteDurations[0] = 8;
+      //noteDurations[1] = 6;
+      melody[0] = NOTE_CS4;
+      noteDurations[0] = 4;
+      break;
+    case TONE_WARNING:
+      Serial.println("Tone: TONE_WARNING");
+      melody[0] = NOTE_D2;
+      noteDurations[0] = 6;
+      break;
+    case TONE_HAPTIC:
+      Serial.println("Tone: TONE_HAPTIC");
+      //melody[0] = NOTE_DS5;
+      melody[0] = NOTE_E5;
+      noteDurations[0] = 9;
+      break;
+    case TONE_MOVING:
+      Serial.println("Tone: TONE_MOVING");
+      //melody[0] = NOTE_DS5;
+      melody[0] = NOTE_E3;
+      melody[1] = NOTE_E3;
+      melody[2] = NOTE_E3;
+      noteDurations[0] = 9;
+      noteDurations[1] = 9;
+      noteDurations[2] = 9;
+      break;
+    default:
+      Serial.println("Tone: DEFAULT / TONE_INFO");
+      melody[0] = NOTE_E5;
+      noteDurations[0] = 9;
+      break;
+  }
+
+  char melody_char[10];
+  itoa(melody[0], melody_char, 10);
+  Serial.print("Melody[0]: "); Serial.println(melody_char);
+  itoa(melody[1], melody_char, 10);
+  Serial.print("Melody[1]: "); Serial.println(melody_char);
+
+  for (int thisNote = 0; thisNote < 3; thisNote++) {
+    // to calculate the note duration, take one second divided by the note type.
+    //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
+    int noteDuration = 1000 / noteDurations[thisNote];
+    tone(BUZZER_PIN, melody[thisNote], noteDuration);
+    // to distinguish the notes, set a minimum time between them.
+    // the note's duration + 30% seems to work well:
+    int pauseBetweenNotes = noteDuration * 1.30;
+    delay(pauseBetweenNotes);
+    // stop the tone playing:
+    noTone(BUZZER_PIN);
+  }
 }
 
 //  Text Display Functions  ------------------
