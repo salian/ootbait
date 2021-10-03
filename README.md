@@ -26,7 +26,7 @@ The objective of this project is to build a smart, hackable and budget-friendly 
 
 ### Under-desk Frame
 
-This project is built around the Ikea [Skarsta](https://www.ikea.com/us/en/p/skarsta-desk-sit-stand-white-s89324812/) table, as this is an easily available and basic adjustable sit/stand desk. The Skarsta coes with a hand crank for manually raising or lowering the tabletop. It has all the mechanical parts we need, and we can add the motor, controller, sensors and display to it. These upgrades will convert it from a manual crank to a fully automable sit/stand desk, and should not cost more than US $50.
+This project is built around the Ikea [Skarsta](https://www.ikea.com/us/en/p/skarsta-desk-sit-stand-white-s89324812/) table, as this is an easily available and basic adjustable sit/stand desk. The Skarsta comes with a hand crank for manually raising or lowering the tabletop. It has all the mechanical parts we need, and we can add the motor, controller, sensors and display to it. These upgrades will convert it from a manual crank to a fully automable sit/stand desk, and should not cost more than US $50.
 
 <p align="center">
     <img src="https://www.ikea.com/us/en/images/products/skarsta-desk-sit-stand-white__0777623_PE758665_S4.JPG"/>
