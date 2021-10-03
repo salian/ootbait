@@ -54,6 +54,7 @@ The components can be purchased individually from:
 | **Component** | **Links** | **Notes** |
 | :-------- |:---:|:---------|
 | **Basic Motorized Desk** |     |     | 
+| Cytron Enhanced 13Amp DC Motor Driver 30A peak (10 seconds) MD10C | [Google](https://www.google.com/search?q=Cytron+Enhanced+13Amp+DC+Motor+Driver+30A+peak+(10+seconds)+MD10C) | |
 | 37GB555 DC 12V 180RPM Geared Motor High Torque Gear Reducer Motor | [Banggood](https://www.banggood.in/37GB555-DC-12V-180RPM-Geared-Motor-High-Torque-Gear-Reducer-Motor-p-1068573.html?rmmds=myorder&cur_warehouse=CN) |  |
 | 37 DC Motor Bracket Metal Gear Motor Fixing Bracket for Robot Smart Car | [Banggood](https://www.banggood.in/37-DC-Motor-Bracket-Metal-Gear-Motor-Fixing-Bracket-for-Robot-Smart-Car-p-1266899.html?rmmds=myorder&cur_warehouse=CN) |  (Optional) |
 | 6mm x 7mm Aluminum Flexible Shaft Coupling OD19mm x L25mm CNC Stepper Motor Coupler Connector | [Banggood](https://www.banggood.in/6mm-x-7mm-Aluminum-Flexible-Shaft-Coupling-OD19mm-x-L25mm-CNC-Stepper-Motor-Coupler-Connector-p-994360.html?rmmds=myorder&cur_warehouse=CN) | The motor has a 6mm shaft. On the other side, the Skarsta's crank is a 6mm hex key (allen key). The way allen keys are measured is the distance between opposite flat surfaces, so this key would need a 7mm inner dia connector. |
@@ -66,6 +67,8 @@ The components can be purchased individually from:
 | JoyStick Module Shield 2.54mm 5 pin Biaxial Buttons Rocker | [Banggood](https://www.banggood.in/JoyStick-Module-Shield-2_54mm-5-pin-Biaxial-Buttons-Rocker-for-PS2-Joystick-Game-Controller-Sensor-p-1566502.html?cur_warehouse=CN&rmmds=search) | |
 | 3.5-5.5V Standard Passive Buzzer Module | [Banggood](https://www.banggood.in/3_5-5_5V-Standard-Passive-Buzzer-Module-p-984074.html?cur_warehouse=CN&rmmds=search0) | You can use a basic buzzer instead of a module. |
 | 500 Ohm multiturn variable Trimmer Potentiometer (Trimpot)  |  | Optional, if you want to control (reduce) the buzzer volume. |
+| VL53L0X TOF Based LIDAR Laser Distance Sensor  | [Banggood](https://www.banggood.in/ToF-Module-VL53L0X-Time-of-Flight-Laser-Ranging-Sensor-Laser-Distance-Sensor-Module-GROVE-I2C-p-1541298.html?cur_warehouse=CN&rmmds=search) | Optional |
+| Ultrasonic IIC Distance Sensor | [Banggood](https://www.banggood.in/Wholesale-Geekcreit-Ultrasonic-Module-HC-SR04-Distance-Measuring-Ranging-Transducers-Sensor-DC-5V-2-450cm-p-40313.html?cur_warehouse=CN&rmmds=search) | Optional |
 | **Miscellany** |     |     |
 | M3 Bolts  |  | To connect the motor |
 | M4 Bolts  |  | To connect cases to the desk |
@@ -82,6 +85,9 @@ The cases can be downloaded and printed:
 | Case for motor and driver | TODO |  |
 | Case for Arduino | TODO |  |
 | Case for Joystick and Screen | TODO |  |
+| Case for Ultrasonic Sensor | TODO |  |
+| Case for Laser Sensor | TODO | Optional, if you use the sensor and your sensor does not have the case |
+
 
 #### Pre-assembled Kits
 Currently no kits are available to buy.
