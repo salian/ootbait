@@ -102,7 +102,7 @@ Currently no kits are available to buy.
 
 #### Todo
 
-- ~~Add Fritzing File to Readme~~~
+- ~~Add circuit diagram (fritzing) to readme~~
 - Ultrasound and Laser sensor support for motion limits
 - WiFi and Web/LAN interface
 - Run motor at variable speed (start slow and accelerate if joystick is kept pushed)
