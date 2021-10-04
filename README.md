@@ -46,6 +46,12 @@ We can use any DC Motor Driver that has a 3-wire interface for a microcontroller
 
 We use the Arduino Uno + ESP8266 combination board. This provides a way to get Wifi, enabling you to add any functionality you can imagine.
 
+## Circuit
+
+#### Fritzing 
+
+![ootbait_v01b](https://user-images.githubusercontent.com/6374430/135815432-be1cbd4b-80fc-4e09-8c00-a449f5f50a37.png)
+
 ## Obtaining the Hardware
 
 #### Electronic components
@@ -93,6 +99,13 @@ The cases can be downloaded and printed:
 Currently no kits are available to buy.
 
 ## Credits & Contributing
+
+#### Todo
+
+- ~~Add Fritzing File to Readme~~~
+- Ultrasound and Laser sensor support for motion limits
+- WiFi and Web/LAN interface
+- Run motor at variable speed (start slow and accelerate if joystick is kept pushed)
 
 ### Why is it called OotBait?
  
