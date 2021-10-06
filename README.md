@@ -114,5 +114,6 @@ OotBait is a stylized variant of उठ बैठ (_Uth-Baith_), the Hindi term 
 ### Built on top of
 
 - [aenniw's repo](https://github.com/aenniw/ARDUINO/tree/master/skarsta)
+- [cesar's project](https://github.com/cesar-moya/arduino-power-desktop)
 - [pashiran's instructable](https://www.instructables.com/Motorizing-an-IKEA-SKARSTA-Table/)
 - [Lady Ada's (Adafruit) Graphic Libraries](https://github.com/adafruit/Adafruit_SSD1306)
